@@ -7,7 +7,6 @@ import session from 'express-session'
 import logger from 'morgan'
 import methodOverride from 'method-override'
 import passport from 'passport'
-import bootstrap from 'bootstrap'
 
 // connect to MongoDB with mongoose
 import('./config/database.js')
