@@ -1,12 +1,16 @@
-<%- include('./partials/html-head') %>
-<%- include('./partials/nav') %>
+<%- include('../partials/html-head') %>
+<%- include('../partials/nav') %>
 
 <main>
-  <!-- <h1><%= title %></h1> -->
+  <h1><%= title %></h1>
   <div>
-		<button id="swift-button" class="btn btn-info">Add Meal!</button>
-  </div>
+    <% if (user) { %>
+     <form action="/meals/new" method="GET">
+      <button type="submit" class="btn btn-info">Create A Recipe!</button>
+      </div>
+    </form>
+  <% } %>
 </main>
 
 
-<%- include('./partials/footer') %>
+<%- include('../partials/footer') %>
