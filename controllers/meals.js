@@ -2,12 +2,16 @@ import { Meal } from "../models/meal.js";
 
 
 function index(req, res){
-  Meal.find({}, function (error, meals){
+  Meal.find({})
+  .then(meals => {
     res.render("meals/index", {
-      error,
       meals,
-      title: "All Meals!"
+      title: "All Current Meals!"
     })
+  })
+  .catch(err =>{
+    console.log(err);
+    res.redirect('/meals')
   })
 }
 

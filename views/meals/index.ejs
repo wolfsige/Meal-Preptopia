@@ -10,6 +10,15 @@
       </div>
     </form>
   <% } %>
+  <section>
+    <ul>
+      <% meals.forEach(meal => { %>
+       <li>
+         <%= meal.name %> 
+       </li>
+      <% }) %>
+    </ul>
+  </section>
 </main>
 
 

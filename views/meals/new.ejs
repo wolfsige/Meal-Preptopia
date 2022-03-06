@@ -4,7 +4,19 @@
 <main>
   <h1><%= title %> </h1>
   <% if (user) { %>
-   
+   <label>
+      Name:
+    <input type="text" name="name" autocomplete="off">
+  </label>
+  <label>
+    Ingredients:
+    <select>
+      <% Ingredients.forEach(ingredient => { %>
+       <option><%= ingredient.name %> </option>
+      <% }) %>
+    </select>
+  </label>
+  Dont see an ingredient? Add a new one here!
   <% } %>
 </main>
 
