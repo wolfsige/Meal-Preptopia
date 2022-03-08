@@ -4,17 +4,6 @@
 <main>
   <h1><%= title %> </h1>
   <% if (user) { %>
-  <form action="/meals" method="POST">
-    <label for="name">
-      Name:
-    </label>
-  <input 
-    id="name" type="text" name="name" autocomplete="off">
-    <button type="submit">Add Name</button>
-  </form>
-  <label>
-    Ingredients:
-  </label>
     <select>
       <% ingredients.forEach(ingredient => { %>
        <option><%= ingredient.name %> </option>
@@ -22,8 +11,9 @@
     </select>
   Dont see an ingredient? Add a new one here!
     <p>
-      <form action="/ingredients/new" method="GET">
-        <label for="name-input"">
+      <form action="/ingredients" method="POST">
+        <label for="name-input"">Ingredient Name:</label>
+        <input type="text" name="name" id="name-input">
         <button type="submit" class="btn btn-info">Add</button>
       </form>
     </p>

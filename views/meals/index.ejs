@@ -9,16 +9,20 @@
       <button type="submit" class="btn btn-info">Create A Recipe!</button>
       </div>
     </form>
-  <% } %>
-  <section>
-    <ul>
-      <% meals.forEach(meal => { %>
-       <li>
-         <%= meal.name %> 
-       </li>
-      <% }) %>
-    </ul>
-  </section>
+    <thead>
+      <tr>
+        <% meals.forEach(meal => { %>
+          <td><%= meal.name %></td>
+          <td><a href="/meals/<%= meal._id%>">DETAILS</a></td>
+          <td>
+            <form action="/meals/<%= meal._id%>?_method=DELETE">
+              <button>X</button>
+            </form>
+          </td>
+          <% }) %>
+        </tr>
+      </thead>
+      <% } %>
 </main>
 
 

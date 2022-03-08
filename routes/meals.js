@@ -7,10 +7,13 @@ const router = Router()
 router.get('/', mealsCtrl.index)
 // GET - localhost:3000/meals/new
 router.get('/new', isLoggedIn, mealsCtrl.new)
-
+//GET - localhost:3000/meals/:id
+router.get('/:id', mealsCtrl.show)
 
 // POST - localhost:3000/meals/new
-// router.post('/new', isLoggedIn, mealsCtrl.create)
+router.post('/', isLoggedIn, mealsCtrl.create)
+// POST - localhost:3000/:id/ingredients
+router.post('/:id/ingredients', mealsCtrl.addIngredients)
 
 
 
