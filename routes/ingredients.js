@@ -10,7 +10,7 @@ router.get('/new', ingredientsCtrl.new)
 router.post('/', ingredientsCtrl.create)
 
 // DELETE - localhost:3000/ingredients/:id
-router.delete('/:id', ingredientsCtrl.delete)
+router.delete('/', ingredientsCtrl.delete)
 
 export {
   router

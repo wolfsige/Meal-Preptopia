@@ -16,11 +16,11 @@ function newIngredient(req, res){
 }
 
 
-
-
-
 function deleteIngredient(req, res){
-  console.log("sany tek");
+  Ingredient.findByIdAndDelete(req.body.ingredientId)
+  .then(() =>{
+    res.redirect('/ingredients/new')
+  })
 }
  
 export{

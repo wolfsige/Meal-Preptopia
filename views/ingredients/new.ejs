@@ -4,12 +4,12 @@
 <main>
   <h1><%= title %> </h1>
   <% if (user) { %>
-    <select>
+    <form action="/ingredients/?_method=DELETE" method="POST">
+    <select name="ingredientId">
       <% ingredients.forEach(ingredient => { %>
-       <option><%= ingredient.name %> </option>
+       <option value="<%= ingredient._id %>"><%= ingredient.name %> </option>
       <% }) %>
     </select>
-    <form action="/ingredients/<%= ingredient._id %>?_method=DELETE" method="POST">
   Delete currently selected ingredient? <button class="btn btn-danger">X</button>
   </form>
     <p>
