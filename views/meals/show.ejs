@@ -9,10 +9,10 @@
   </label><br>
   <div>
     <ul>
-      <% meal.ingredient.forEach(ingredient => { %>
+      <% meal.ingredient.forEach(i => { %>
         <p>
-          <%= ingredient.name %> 
-          <form action="/meals/<%= meal._id%>/<%= ingredient._id %> ?_method=DELETE " method="post">
+          <%= i.name %> 
+          <form action="/meals/<%= meal._id%>/<%= i._id %>?_method=DELETE" method="post">
           <button class="btn btn-danger">X</button>
         </form>
         </p>

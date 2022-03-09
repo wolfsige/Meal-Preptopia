@@ -77,10 +77,13 @@ function deleteMeals(req, res) {
 }
 
 function deleteMealIngredient(req, res){
-  // Ingredient.findByIdAndDelete(req.params.id)
-  // .then(() => {
-  //   res.redirect(`/meals/${meal._id}`)
-  // })
+  Meal.findById(req.params.mealId)
+  .then((meal) => {
+    meal.ingredient.remove({_id: req.params.ingredientId})
+    meal.save(() => {
+      res.redirect(`/meals/${meal._id}`)
+    })
+  })
 }
 
 export{
