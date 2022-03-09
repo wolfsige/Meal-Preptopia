@@ -52,7 +52,7 @@ function show(req, res){
   .exec(function(err, meal){
     Ingredient.find({_id: {$nin: meal.ingredient}}, function(err, ingredients){ 
       res.render('meals/show', {
-        title: meal.name,
+          title: meal.name,
           ingredients,
           meal,
       })
