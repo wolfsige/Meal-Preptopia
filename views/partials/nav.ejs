@@ -1,6 +1,8 @@
   <% if (!user) { %>
     <link rel="stylesheet" href="/stylesheets/siwg.css">
-  <% } %>
+  <% } else { %>
+    <link rel="stylesheet" href="/stylesheets/nav.css">
+  <% }  %> 
 </head>
 <body>
   <nav>
@@ -9,10 +11,10 @@
     <a href="/meals" <%- title === 'All Current Meals!' ? 'class="active"' : '' %> >All Meals</a>
 
     <a href="/ingredients/new">Manage Ingredients</a>
-    
+
     <% if (user) { %>
       <a href="/auth/logout">
-        <button type="submit">Logout</button>
+        <button type="submit" class="btn btn-danger">Logout</button>
       </a>
     <% } else { %>
       <a href="/auth/google" class="siwg-link">
