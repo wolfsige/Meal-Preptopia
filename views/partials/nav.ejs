@@ -4,6 +4,12 @@
 </head>
 <body>
   <nav>
+    <a href="/meals/new" <%- title === 'Add A Meal Name!' ? 'class="active"' : ''  %>>Add Meal</a>
+    
+    <a href="/meals" <%- title === 'All Current Meals!' ? 'class="active"' : '' %> >All Meals</a>
+
+    <a href="/ingredients/new">Manage Ingredients</a>
+    
     <% if (user) { %>
       <a href="/auth/logout">
         <button type="submit">Logout</button>
@@ -15,10 +21,5 @@
         </button>
       </a>
     <% } %>
-    <a href="/meals/new" <%- title === 'Add A Meal Name!' ? 'class="active"' : ''  %>>Add Meal</a>
-    
-    <a href="/meals" <%- title === 'All Current Meals!' ? 'class="active"' : ''%> >All Meals</a>
-
-    
     
   </nav>
