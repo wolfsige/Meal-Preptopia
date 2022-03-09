@@ -9,7 +9,9 @@
        <option><%= ingredient.name %> </option>
       <% }) %>
     </select>
-  Dont see an ingredient? Add a new one here!
+    <form action="">
+  Delete currently selected ingredient? <button class="btn btn-danger">X</button>
+  </form>
     <p>
       <form action="/ingredients" method="POST">
         <label for="name-input"">Ingredient Name:</label>
