@@ -14,6 +14,7 @@ router.get('/:id', mealsCtrl.show)
 router.post('/', isLoggedIn, mealsCtrl.create)
 // POST - localhost:3000/:id/ingredients
 router.post('/:id/ingredients', mealsCtrl.addIngredients)
+router.post('/:id/guide', mealsCtrl.createGuide)
 
 // DELETE - localhost:3000/meals/:id
 router.delete('/:id', mealsCtrl.delete)

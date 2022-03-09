@@ -86,6 +86,16 @@ function deleteMealIngredient(req, res){
   })
 }
 
+function createGuide(req, res){
+  Meal.findById(req.params.id)
+  .then((meal) => {
+    meal.guide.push(req.body)
+    meal.save(() => {
+      res.redirect(`/meals/${meal._id}`)
+    })
+  })
+}
+
 export{
   index,
   newMeal as new,
@@ -93,5 +103,6 @@ export{
   show,
   addIngredients,
   deleteMeals as delete,
-  deleteMealIngredient
+  deleteMealIngredient,
+  createGuide
 }

@@ -27,6 +27,32 @@
     </select>
     <button type="submit" class="btn btn-info">Add Ingredient</button>
   </form>
+  <form 
+    action="/meals/<%= meal._id %>/guide"
+    method="POST"
+  >
+    <label for="step">Guide:</label><br>
+    <input name="step">
+    <button type="submit" class="btn btn-info">Add Step</button>
+  </form>
+  <% if (meal.guide) { %>
+    <table>
+      <thead>
+        <tr>
+          <th>Steps</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% meal.guide.forEach(function(guide) { %>
+          <tr>
+            <td><%= guide.step %></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  <% } else { %>
+    <h3>No Guide Yet!</h3>
+  <% } %>
 <% } %>
 
 

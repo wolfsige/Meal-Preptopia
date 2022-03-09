@@ -3,7 +3,7 @@ import mongoose from "mongoose"
 const Schema = mongoose.Schema
 
 const guideSchema = new Schema({
-  step: String
+  step: {type: String}
 })
 
 const mealSchema = new Schema({
