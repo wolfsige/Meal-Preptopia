@@ -10,7 +10,12 @@
   <div>
     <ul>
       <% meal.ingredient.forEach(ingredient => { %>
-        <p><%= ingredient.name %> </p>
+        <p>
+          <%= ingredient.name %> 
+          <form action="/meals/<%= meal._id%>/<%= ingredient._id %> ?_method=DELETE " method="post">
+          <button class="btn btn-danger">X</button>
+        </form>
+        </p>
       <% }) %>
     </ul>
   </div>

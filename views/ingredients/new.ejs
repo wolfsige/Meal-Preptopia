@@ -9,7 +9,7 @@
        <option><%= ingredient.name %> </option>
       <% }) %>
     </select>
-    <form action="">
+    <form action="/ingredients/<%= ingredient._id %>?_method=DELETE" method="POST">
   Delete currently selected ingredient? <button class="btn btn-danger">X</button>
   </form>
     <p>

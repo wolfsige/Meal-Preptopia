@@ -76,6 +76,12 @@ function deleteMeals(req, res) {
   })
 }
 
+function deleteMealIngredient(req, res){
+  // Ingredient.findByIdAndDelete(req.params.id)
+  // .then(() => {
+  //   res.redirect(`/meals/${meal._id}`)
+  // })
+}
 
 export{
   index,
@@ -83,5 +89,6 @@ export{
   create,
   show,
   addIngredients,
-  deleteMeals as delete
+  deleteMeals as delete,
+  deleteMealIngredient
 }

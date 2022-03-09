@@ -8,7 +8,6 @@ function create(req, res){
 
 function newIngredient(req, res){
   Ingredient.find({}, function(err, ingredients){
-    console.log(ingredients);
     res.render('ingredients/new', {
       title: "Add Ingredient",
       ingredients,
@@ -16,7 +15,16 @@ function newIngredient(req, res){
   })
 }
 
+
+
+
+
+function deleteIngredient(req, res){
+  console.log("sany tek");
+}
+ 
 export{
   create,
   newIngredient as new,
+  deleteIngredient as delete
 }
