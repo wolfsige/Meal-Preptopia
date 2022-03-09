@@ -69,6 +69,12 @@ function addIngredients(req, res){
   }) 
 }
 
+function deleteMeals(req, res) {
+  Meal.findByIdAndDelete(req.params.id)
+  .then(() => {
+    res.redirect('/meals')
+  })
+}
 
 
 export{
@@ -76,5 +82,6 @@ export{
   newMeal as new,
   create,
   show,
-  addIngredients
+  addIngredients,
+  deleteMeals as delete
 }

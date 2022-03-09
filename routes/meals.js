@@ -15,6 +15,9 @@ router.post('/', isLoggedIn, mealsCtrl.create)
 // POST - localhost:3000/:id/ingredients
 router.post('/:id/ingredients', mealsCtrl.addIngredients)
 
+// DELETE - localhost:3000/meals/:id
+router.delete('/:id', mealsCtrl.delete)
+
 
 
 export{
