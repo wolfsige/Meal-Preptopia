@@ -3,6 +3,9 @@ import { Meal } from "../models/meal.js";
 
 
 function index(req, res){
+  if (!req.user){
+    res.redirect('/')
+  }
   Meal.find({})
   .then(meals => {
     res.render("meals/index", {
@@ -16,16 +19,11 @@ function index(req, res){
   })
 }
 
-// function newMeal(req, res){
-//   Ingredient.find({})
-//   .then(ngredient)
-//   res.render('meals/new', {
-//     title: 'Add A Meal Name!'
-//   })
-// }
-
 
 function newMeal(req, res){
+  if (!req.user){
+    res.redirect('/')
+  }
   Ingredient.find({})
   .then(ingredients => {
     res.render('meals/new', {
@@ -36,6 +34,9 @@ function newMeal(req, res){
 }
 
 function create(req, res){
+  if (!req.user){
+    res.redirect('/')
+  }
   Meal.create(req.body)
   .then(meal =>{
     res.redirect('/meals')
@@ -47,6 +48,9 @@ function create(req, res){
 }
 
 function show(req, res){
+  if (!req.user){
+    res.redirect('/')
+  }
   Meal.findById(req.params.id)
   .populate('ingredient')
   .exec(function(err, meal){
@@ -61,6 +65,9 @@ function show(req, res){
 }
 
 function addIngredients(req, res){
+  if (!req.user){
+    res.redirect('/')
+  }
   Meal.findById(req.params.id, function(err, meal){
     meal.ingredient.push(req.body.ingredientId)
     meal.save(function(err){
@@ -70,6 +77,9 @@ function addIngredients(req, res){
 }
 
 function deleteMeals(req, res) {
+  if (!req.user){
+    res.redirect('/')
+  }
   Meal.findByIdAndDelete(req.params.id)
   .then(() => {
     res.redirect('/meals')
@@ -77,7 +87,10 @@ function deleteMeals(req, res) {
 }
 
 function deleteMealIngredient(req, res){
-  Meal.findById(req.params.mealId)
+  if (!req.user){
+    res.redirect('/')
+  }
+  Meal.findById(req.params.id)
   .then((meal) => {
     meal.ingredient.remove({_id: req.params.ingredientId})
     meal.save(() => {
@@ -87,10 +100,27 @@ function deleteMealIngredient(req, res){
 }
 
 function createGuide(req, res){
+  if (!req.user){
+    res.redirect('/')
+  }
   Meal.findById(req.params.id)
   .then((meal) => {
     meal.guide.push(req.body)
     meal.save(() => {
+      res.redirect(`/meals/${meal._id}`)
+    })
+  })
+}
+
+function deleteStep(req, res){
+  if (!req.user){
+    res.redirect('/')
+  }
+  Meal.findById(req.params.id)
+  .then((meal) =>{
+    meal.guide[req.params.stepId].remove()
+    // meal.step.remove({_id: req.params.stepId})
+    meal.save(() =>{
       res.redirect(`/meals/${meal._id}`)
     })
   })
@@ -104,5 +134,6 @@ export{
   addIngredients,
   deleteMeals as delete,
   deleteMealIngredient,
-  createGuide
+  createGuide,
+  deleteStep
 }

@@ -2,7 +2,7 @@
 <%- include('./partials/nav') %>
 
 <main>
-  <h1>Welcome To Mealtopia, <%= user ? user.profile.name : "Friend" %></h1>
+  <h1>Welcome To Mealtopia, <%= user ? user.profile.name : "Friend" %>. sign in to get started</h1>
   <% if (user?.profile.avatar) { %>
     <div>
       <img

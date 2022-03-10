@@ -1,12 +1,18 @@
 import { Ingredient } from "../models/ingredient.js";
 
 function create(req, res){
+  if (!req.user){
+    res.redirect('/')
+  }
   Ingredient.create(req.body, function(err, ingredient){
-    res.redirect('/meals/new')
+    res.redirect('/ingredients/new')
   })
 }
 
 function newIngredient(req, res){
+  if (!req.user){
+    res.redirect('/')
+  }
   Ingredient.find({}, function(err, ingredients){
     res.render('ingredients/new', {
       title: "Add Ingredient",
@@ -17,6 +23,9 @@ function newIngredient(req, res){
 
 
 function deleteIngredient(req, res){
+  if (!req.user){
+    res.redirect('/')
+  }
   Ingredient.findByIdAndDelete(req.body.ingredientId)
   .then(() =>{
     res.redirect('/ingredients/new')

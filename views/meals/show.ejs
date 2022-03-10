@@ -12,7 +12,7 @@
       <% meal.ingredient.forEach(i => { %>
         <p>
           <%= i.name %> 
-          <form action="/meals/<%= meal._id%>/<%= i._id %>?_method=DELETE" method="post">
+          <form action="/meals/<%= meal._id%>/ingredient/<%= i._id %>?_method=DELETE" method="post">
           <button class="btn btn-danger">X</button>
         </form>
         </p>
@@ -43,11 +43,14 @@
         </tr>
       </thead>
       <tbody>
-        <% meal.guide.forEach(function(guide) { %>
-          <tr>
-            <td><%= guide.step %></td>
-          </tr>
-        <% }) %>
+        <% meal.guide.forEach(function(guide, idx) { %>
+          <form action="/meals/<%= meal._id%>/step/<%= idx %>?_method=DELETE" method="POST">
+            <tr>
+              <td><%= guide.step %>
+              <button type="submit" class="btn btn-danger">X</button></td>
+            </tr>
+          </form>
+          <% }) %>
       </tbody>
     </table>
   <% } else { %>

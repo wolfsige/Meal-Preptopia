@@ -18,7 +18,8 @@ router.post('/:id/guide', mealsCtrl.createGuide)
 
 // DELETE - localhost:3000/meals/:id
 router.delete('/:id', mealsCtrl.delete)
-router.delete('/:mealId/:ingredientId', mealsCtrl.deleteMealIngredient)
+router.delete('/:id/ingredient/:ingredientId', mealsCtrl.deleteMealIngredient)
+router.delete('/:id/step/:stepId', mealsCtrl.deleteStep)
 
 
 export{
