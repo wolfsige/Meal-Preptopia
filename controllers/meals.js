@@ -126,6 +126,26 @@ function deleteStep(req, res){
   })
 }
 
+function edit(req, res){
+  Meal.findById(req.params.id)
+  .then(meal => {
+    res.render('meals/edit', {
+      meal,
+      title: 'Edit Meal Name!'
+    })
+  })
+}
+
+function update(req, res){
+  for (let key in req.body) {
+    if (req.body[key] === '') delete req.body[key]
+  }
+  Meal.findByIdAndUpdate(req.params.id, req.body, function(err, meal) {
+    res.redirect(`/meals/${meal._id}`)
+  })
+
+}
+
 export{
   index,
   newMeal as new,
@@ -135,5 +155,7 @@ export{
   deleteMeals as delete,
   deleteMealIngredient,
   createGuide,
-  deleteStep
+  deleteStep,
+  edit,
+  update
 }

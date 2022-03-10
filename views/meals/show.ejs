@@ -4,6 +4,9 @@
 
 <% if (user) { %>
   <%= title %> <br>
+  <form action="/meals/<%= meal._id %>/edit" method="GET">
+    <button type="submit" class="btn btn-info">Update</button>
+  </form>
   <label>
     Ingredients:
   </label><br>
