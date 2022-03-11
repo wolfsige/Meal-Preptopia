@@ -1,28 +1,29 @@
 <%- include('../partials/html-head') %>
 <%- include('../partials/nav') %>
-
+<link rel="stylesheet" href="stylesheets/allMeals.css">
 
 <main>
   <h1><%= title %></h1>
-  <div>
-    <% if (user) { %>
-     <form action="/meals/new" method="GET">
+  <% if (user) { %>
+    <form action="/meals/new" method="GET">
       <button type="submit" class="btn btn-info">Create A Recipe!</button>
-      </div>
     </form>
     <thead>
       <% meals.forEach(meal => { %>
-        <tr>
-          <td><%= meal.name %></td>
-          <td><a href="/meals/<%= meal._id%>">DETAILS</a></td>
-          <td>
-            <form action="/meals/<%= meal._id%>?_method=DELETE" method="POST">
-              <button class="btn btn-danger">X</button>
-            </form>
-          </td>
-        </tr>
-        <% }) %>
-      </thead>
+        <div>
+          <tr>
+              <td><%= meal.name %></td>
+             <td><a href="/meals/<%= meal._id%>">DETAILS</a></td>
+             <td>
+             <form action="/meals/<%= meal._id%>?_method=DELETE" method="POST">
+               <button class="btn btn-danger">X</button>
+             </form>
+           </td>
+
+         </tr>
+        </div>
+         <% }) %>
+        </thead>
       <% } %>
 </main>
 

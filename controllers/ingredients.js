@@ -15,7 +15,7 @@ function newIngredient(req, res){
   }
   Ingredient.find({}, function(err, ingredients){
     res.render('ingredients/new', {
-      title: "Add Ingredient",
+      title: "Add Or Delete an Ingredient",
       ingredients,
     })
   })

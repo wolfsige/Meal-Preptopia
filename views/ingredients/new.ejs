@@ -1,16 +1,20 @@
 <%- include('../partials/html-head') %>
+<link rel="stylesheet" href="stylesheets/manageIngredients.css">
 <%- include('../partials/nav') %>
 
 <main>
   <h1><%= title %> </h1>
   <% if (user) { %>
+    <div>
     <form action="/ingredients/?_method=DELETE" method="POST">
-    <select name="ingredientId">
+      <select name="ingredientId">
       <% ingredients.forEach(ingredient => { %>
        <option value="<%= ingredient._id %>"><%= ingredient.name %> </option>
       <% }) %>
-    </select>
-  Delete currently selected ingredient? <button class="btn btn-danger">X</button>
+    </select><br>
+    
+      Delete currently selected ingredient? <button class="btn btn-danger">X</button>
+    
   </form>
     <p>
       <form action="/ingredients" method="POST">
@@ -19,6 +23,7 @@
         <button type="submit" class="btn btn-info">Add</button>
       </form>
     </p>
+  </div>
   <% } %>
 </main>
 

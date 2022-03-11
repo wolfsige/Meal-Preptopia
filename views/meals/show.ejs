@@ -1,8 +1,10 @@
 <%- include('../partials/html-head') %>
+<link rel="stylesheet" href="/stylesheets/manageIngredients.css">
 <%- include('../partials/nav') %>
 
 
 <% if (user) { %>
+  <p>
   <%= title %> <br>
   <form action="/meals/<%= meal._id %>/edit" method="GET">
     <button type="submit" class="btn btn-info">Update</button>
@@ -14,9 +16,8 @@
     <ul>
       <% meal.ingredient.forEach(i => { %>
         <p>
-          <%= i.name %> 
           <form action="/meals/<%= meal._id%>/ingredient/<%= i._id %>?_method=DELETE" method="post">
-          <button class="btn btn-danger">X</button>
+          <%= i.name %> <button class="btn btn-danger">X</button>
         </form>
         </p>
       <% }) %>
@@ -30,6 +31,15 @@
     </select>
     <button type="submit" class="btn btn-info">Add Ingredient</button>
   </form>
+      
+      <p>
+        Dont see an ingredient? Add a new one here!
+        <form action="/ingredients/new" method="GET">
+          <label for="name-input"">
+          <button type="submit" class="btn btn-info">Add</button>
+        </form>
+      </p>
+
   <form 
     action="/meals/<%= meal._id %>/guide"
     method="POST"
@@ -56,6 +66,7 @@
           <% }) %>
       </tbody>
     </table>
+  </p>
   <% } else { %>
     <h3>No Guide Yet!</h3>
   <% } %>
