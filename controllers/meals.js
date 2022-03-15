@@ -140,10 +140,16 @@ function deleteStep(req, res){
 function edit(req, res){
   Meal.findById(req.params.id)
   .then(meal => {
-    res.render('meals/edit', {
-      meal,
-      title: 'Edit Meal Name!'
-    })
+    if (meal.owner.equals(req.user.profile._id)){
+      res.render('meals/edit', {
+        meal,
+        title: 'Edit Meal Name!'
+      })
+    }
+  })
+  .catch(err => {
+    console.log(err)
+    res.redirect("/meals")
   })
 }
 
