@@ -3,6 +3,7 @@ import { Meal } from "../models/meal.js";
 
 
 function index(req, res){
+  console.log(req.user);
   if (!req.user){
     res.redirect('/')
   }
@@ -37,6 +38,7 @@ function create(req, res){
   if (!req.user){
     res.redirect('/')
   }
+  req.body.owner = req.user.profile._id
   Meal.create(req.body)
   .then(meal =>{
     res.redirect('/meals')
@@ -80,9 +82,18 @@ function deleteMeals(req, res) {
   if (!req.user){
     res.redirect('/')
   }
-  Meal.findByIdAndDelete(req.params.id)
-  .then(() => {
-    res.redirect('/meals')
+  Meal.findById(req.params.id)
+  .then(meal => {
+    if (meal.owner.equals(req.user.profile._id)){
+      meal.delete()
+      .then(() => {
+        res.redirect('/meals')
+      })
+    }
+  })
+  .catch(err => {
+    console.log(err)
+    res.redirect("/meals")
   })
 }
 

@@ -9,7 +9,8 @@ const guideSchema = new Schema({
 const mealSchema = new Schema({
   name: {type: String, required: true,},
   guide: [guideSchema],
-  ingredient: [{type: Schema.Types.ObjectId, ref: "Ingredient"}]
+  ingredient: [{type: Schema.Types.ObjectId, ref: "Ingredient"}],
+  owner: {type: Schema.Types.ObjectId, ref: "Profile"}
 })
 
 const Meal = mongoose.model('Meal', mealSchema)
