@@ -1,76 +1,84 @@
 <%- include('../partials/html-head') %>
-<link rel="stylesheet" href="/stylesheets/manageIngredients.css">
+  <link rel="stylesheet" href="/stylesheets/manageIngredients.css">
 <%- include('../partials/nav') %>
 
 
-<% if (user) { %>
-  <p>
-  <%= title %> <br>
-  <form action="/meals/<%= meal._id %>/edit" method="GET">
-    <button type="submit" class="btn btn-info">Update</button>
-  </form>
-  <label>
-    Ingredients:
-  </label><br>
-  <div>
-    <ul>
-      <% meal.ingredient.forEach(i => { %>
-        <p>
-          <form action="/meals/<%= meal._id%>/ingredient/<%= i._id %>?_method=DELETE" method="post">
-          <%= i.name %> <button class="btn btn-danger">X</button>
-        </form>
-        </p>
-      <% }) %>
-    </ul>
-  </div>
-  <form action="/meals/<%= meal._id%>/ingredients" method="POST">
-    <select name="ingredientId">
-      <% ingredients.forEach(ingredient => { %>
-      <option value="<%= ingredient._id %>"><%= ingredient.name %> </option>
-      <% }) %>
-    </select>
-    <button type="submit" class="btn btn-info">Add Ingredient</button>
-  </form>
-      
+    <% if (user) { %>
       <p>
-        Dont see an ingredient? Add a new one here!
+        <%= title %> <br>
+          <% if (meal.owner.equals(user?.profile._id)) { %>
+
+            <form action="/meals/<%= meal._id %>/edit" method="GET">
+              <button type="submit" class="btn btn-info">Update</button>
+            </form>
+            <% } %>
+              <label>
+                Ingredients:
+              </label><br>
+              <div>
+                <ul>
+                  <% meal.ingredient.forEach(i=> { %>
+                    <p>
+
+                    <form action="/meals/<%= meal._id%>/ingredient/<%= i._id %>?_method=DELETE" method="post">
+                      <%= i.name %>
+                        <% if (meal.owner.equals(user?.profile._id)) { %> <button class="btn btn-danger">X</button>
+                    </form>
+                    <% } %>
+      </p>
+      <% }) %>
+        </ul>
+        </div>
+        <form action="/meals/<%= meal._id%>/ingredients" method="POST">
+          <select name="ingredientId">
+            <% ingredients.forEach(ingredient=> { %>
+              <option value="<%= ingredient._id %>">
+                <%= ingredient.name %>
+              </option>
+              <% }) %>
+          </select>
+          <button type="submit" class="btn btn-info">Add Ingredient</button>
+        </form>
+
+        <p>
+          Dont see an ingredient? Add a new one here!
         <form action="/ingredients/new" method="GET">
           <label for="name-input"">
-          <button type="submit" class="btn btn-info">Add</button>
+          <button type=" submit" class="btn btn-info">Add</button>
         </form>
-      </p>
+        </p>
 
-  <form 
-    action="/meals/<%= meal._id %>/guide"
-    method="POST"
-  >
-    <label for="step">Guide:</label><br>
-    <input name="step">
-    <button type="submit" class="btn btn-info">Add Step</button>
-  </form>
-  <% if (meal.guide) { %>
-    <table>
-      <thead>
-        <tr>
-          <th>Steps</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% meal.guide.forEach(function(guide, idx) { %>
-          <form action="/meals/<%= meal._id%>/step/<%= idx %>?_method=DELETE" method="POST">
-            <tr>
-              <td><%= guide.step %>
-              <button type="submit" class="btn btn-danger">X</button></td>
-            </tr>
-          </form>
-          <% }) %>
-      </tbody>
-    </table>
-  </p>
-  <% } else { %>
-    <h3>No Guide Yet!</h3>
-  <% } %>
-<% } %>
-
-
+        <form action="/meals/<%= meal._id %>/guide" method="POST">
+          <label for="step">Guide:</label><br>
+          <input name="step">
+          <button type="submit" class="btn btn-info">Add Step</button>
+        </form>
+        <% if (meal.guide) { %>
+          <table>
+            <thead>
+              <tr>
+                <th>Steps</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% meal.guide.forEach(function(guide, idx) { %>
+                <form action="/meals/<%= meal._id%>/step/<%= idx %>?_method=DELETE" method="POST">
+                  <tr>
+                    <td>
+                      <%= guide.step %>
+                        <% if (meal.owner.equals(user?.profile._id)) { %>
+                          <button type="submit" class="btn btn-danger">X</button>
+                    </td>
+                  </tr>
+                </form>
+                <% } %>
+                  <% }) %>
+            </tbody>
+          </table>
+          </p>
+          <% } else { %>
+            <h3>No Guide Yet!</h3>
+            <% } %>
+              <% } %>
+              
 <%- include('../partials/footer') %>

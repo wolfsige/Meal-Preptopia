@@ -16,8 +16,10 @@
              <td><a href="/meals/<%= meal._id%>">DETAILS</a></td>
              <td>
              <form action="/meals/<%= meal._id%>?_method=DELETE" method="POST">
+              <% if (meal.owner.equals(user?.profile._id)) { %> 
                <button class="btn btn-danger">X</button>
              </form>
+             <% } %> 
            </td>
 
          </tr>
